@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOVER-SLIDES</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Figtree&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Figtree", sans-serif;
+}
+
+body {
+	display: grid;
+	place-content: center;
+	min-height: 100vh;
+	background: #000;
+    background-image: url(https://i.pinimg.com/564x/71/ec/60/71ec60d3aaf7524239f9dd8c6a6d4a54.jpg);
+    background-size: cover;
+}
+
+.container {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+	gap: 1rem;
+	width: 800px;
+	height: 500px;
+	transition: all 400ms;
+}
+
+.container:hover .box {
+	filter: grayscale(100%) opacity(24%);
+}
+
+.box {
+	position: relative;
+	background: var(--img) center center;
+	background-size: cover;
+	transition: all 400ms;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container .box:hover {
+	filter: grayscale(0%) opacity(100%);
+}
+
+.container:has(.box-1:hover) {
+	grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-2:hover) {
+	grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-3:hover) {
+	grid-template-columns: 1fr 1fr 3fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-4:hover) {
+	grid-template-columns: 1fr 1fr 1fr 3fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-5:hover) {
+	grid-template-columns: 1fr 1fr 1fr 1fr 3fr 1fr 1fr 1fr;
+}
+
+.container:has(.box-6:hover) {
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 3fr 1fr 1fr;
+}
+
+.container:has(.box-7:hover) {
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 3fr 1fr;
+}
+
+.container:has(.box-8:hover) {
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 3fr;
+}
+
+.box:nth-child(odd) {
+	transform: translateY(-16px);
+}
+
+.box:nth-child(even) {
+	transform: translateY(16px);
+}
+
+.box::after {
+	content: attr(data-text);
+	position: absolute;
+	bottom: 20px;
+	background: #000;
+	color: #fff;
+	padding: 10px 10px 10px 14px;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	transform: translateY(60px);
+	opacity: 0;
+	transition: all 400ms;
+}
+
+.box:hover::after {
+	transform: translateY(0);
+	opacity: 1;
+	transition-delay: 4ms;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box-1" style="--img: url(https://i.pinimg.com/236x/40/e6/37/40e6373483a88865458c11573e71778e.jpg);" data-text="IRON Man"></div>
+        <div class="box box-2" style="--img: url(https://i.pinimg.com/originals/31/89/ee/3189eec8463bce4ee6b7fe0d606eeb9d.jpg);" data-text="BLACK PANTER"></div>
+        <div class="box box-3" style="--img: url(https://i.pinimg.com/564x/28/9d/12/289d1220efe4edc04dd023cbc978c595.jpg);" data-text="HULK"></div>
+        <div class="box box-4" style="--img: url(https://i.pinimg.com/236x/a0/86/a4/a086a42d1ade21e65b782aab58544318.jpg);" data-text="THANOS"></div>
+        <div class="box box-5" style="--img: url(https://i.pinimg.com/236x/96/d1/7c/96d17c034e79ada805c9befb9706efe5.jpg);" data-text="SPIDER MAN"></div>
+        <div class="box box-6" style="--img: url(https://i.pinimg.com/236x/a3/ea/b5/a3eab5d328449ec2f06613700f136a33.jpg);" data-text="CAPTAIN AMERICA"></div>
+		<div class="box box-7" style="--img: url(https://i.pinimg.com/236x/64/3b/09/643b096aa85d2271ec98edd5f55dff02.jpg);" data-text="THOR"></div>
+	    <div class="box box-8" style="--img: url(https://i.pinimg.com/236x/e4/16/fe/e416feb586edc64d2d5a966b99be36ee.jpg);" data-text="BLACK WINDOW"></div>
+	</div>
+	
+	<script>
+        window.onload = function() {
+            const boxes = document.querySelectorAll('.box');
+            const container = document.querySelector('.container');
+
+            boxes.forEach(box => {
+                box.addEventListener('mouseover', () => {
+                    container.classList.remove('layout-hover');
+                    container.classList.add(`layout-hover-${box.classList[1].replace('box-', '')}`);
+                });
+            });
+        };
+    </script>
+
+</body>
+</html>
